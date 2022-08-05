@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+@{
+    ViewData["Title"] = "List Roles";
+}
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+    <li class="breadcrumb-item active">Daftar Role</li>
+</ol>
+@if(Model.Any())
+{
+    <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreateRole" asp-controller="Admin"> Add New Role</a>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Role ID</th>
+            <th>Role Name</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+        </tr>
+        @foreach(var role in Model)
+        {
+            <tr>
+            <td>@role.Id</td>
+            <td>@role.Name</td>
+            <td><a class="btn btn-warning" asp-action="EditRole" asp-route-id="@role.Id">Edit</a></td>
+            <td><a class="btn btn-danger" asp-action="HapusRole" asp-route-id="@role.Id">Hapus</a></td>
+        </tr>
+        }
+    </table>
+}
+else{
+   <div class="card col-md-4">
+       <div class="card-heade">
+           Belum ada data role
+       </div>
+       <div class="card-body">
+            <a class="btn btn-primary mb-3" style="width:auto" asp-action="CreateRole" asp-controller="Admin"> Add New Role</a>
+       </div>
+   </div>
+}
